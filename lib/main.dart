@@ -11,7 +11,7 @@ void main() {
             title : const Text(
             "Flutter ExpenseTracker",
             style: TextStyle(
-              color: Color.fromARGB(255, 202, 131, 214),
+              color: Color.fromARGB(255, 237, 205, 243),
             ),
           ),
         ),
