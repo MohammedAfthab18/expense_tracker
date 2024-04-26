@@ -1,5 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:uuid/uuid.dart';
+import 'package:intl/intl.dart';
+
+
+final formatter = DateFormat.yMd();
 
 // to generate  a unique id for each task when i click that button 
 //i use uuid package to do the job for me 
@@ -29,7 +33,8 @@ class Expense {
   final DateTime date;
   final Category category;
 
-  //String get FormattedDate {
-
+  String get formattedDate {
+  return formatter.format(date);
+  }
   }
 
