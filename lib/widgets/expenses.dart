@@ -30,9 +30,24 @@ class _ExpensesState extends State<Expenses> {
     //context is available globally due to flutter
     // wheneever i encounter the word "builder" add a function there ...
     showModalBottomSheet(
+      isScrollControlled: true,
       context: context,
-      builder: (ctx) => const NewExpense(),
+      builder: (ctx) => NewExpense(
+        onAddExpense: _addExpense,
+      ),
     );
+  }
+
+  void _addExpense(Expense expense) {
+    setState(() {
+      _registeredExpenses.add(expense);
+    });
+  }
+
+  void _removeExpense(Expense expense) {
+    setState(() {
+      _registeredExpenses.remove(expense);
+    });
   }
 
   @override
@@ -56,7 +71,10 @@ class _ExpensesState extends State<Expenses> {
           //Toolbar with the addButton => Row()
           const Text("The Chart"),
           Expanded(
-            child: ExpensesList(expenses: _registeredExpenses),
+            child: ExpensesList(
+              expenses: _registeredExpenses,
+              onRemoveExpense: _removeExpense,
+            ),
           )
         ],
       ),
