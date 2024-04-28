@@ -37,9 +37,10 @@ class _NewExpenseState extends State<NewExpense> {
     final amountIsInvalid =
         enteredAmount == null || enteredAmount <= 0; // tryparse('Hello') =>null
     if (_titleController.text.trim().isEmpty ||
-        amountIsInvalid ||
-        _selectedCategory == null) {
+        amountIsInvalid ) {
       //show error message
+      //||
+      //  _selectedCategory == null
       showDialog(
         context: context,
         builder: (ctx) => AlertDialog(
