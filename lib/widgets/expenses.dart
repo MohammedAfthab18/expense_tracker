@@ -68,8 +68,7 @@ class _ExpensesState extends State<Expenses> {
 
   @override
   Widget build(BuildContext context) {
-    print(MediaQuery.of(context).size.width);
-    print(MediaQuery.of(context).size.height);
+    final width = MediaQuery.of(context).size.width;
     Widget mainContent = const Center(
       child: Text('No expenses found. Start adding some...'),
     );
@@ -94,15 +93,27 @@ class _ExpensesState extends State<Expenses> {
           ),
         ],
       ),
-      body: Column(
-        children: [
-          //Toolbar with the addButton => Row()
-          Chart(expenses: _registeredExpenses),
-          Expanded(
-            child: mainContent,
-          )
-        ],
-      ),
+      body: width < 600
+          ? Column(
+              children: [
+                //Toolbar with the addButton => Row()
+                Chart(expenses: _registeredExpenses),
+                Expanded(
+                  child: mainContent,
+                ),
+              ],
+            )
+          : Row(
+              children: [
+                //Toolbar with the addButton => Row()
+                Expanded(
+                  child: Chart(expenses: _registeredExpenses),
+                ),
+                Expanded(
+                  child: mainContent,
+                )
+              ],
+            ),
     );
   }
 }
